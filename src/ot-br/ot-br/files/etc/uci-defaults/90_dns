@@ -1,0 +1,23 @@
+#!/bin/sh
+
+uci add_list dhcp.@dnsmasq[0].server='127.0.0.1#5353'
+uci set dhcp.@dnsmasq[0].noresolv='1'
+uci commit dhcp
+
+uci set network.globals.ula_prefix='fd40:2d04:3c20::/48'
+uci set network.nat64=interface
+uci set network.nat64.proto='tayga'
+uci set network.nat64.ipv4_addr='192.168.64.1'
+uci set network.nat64.ipv6_addr='fd40:2d04:3c20::3'
+uci set network.nat64.prefix='64:ff9b::/96'
+uci set network.nat64.dynamic_pool='192.168.64.0/24'
+uci set network.nat64.accept_ra='0'
+uci set network.nat64.send_rs='0'
+uci commit network
+
+uci add_list firewall.@zone[0].network='nat64'
+uci set firewall.@defaults[0].disable_ipv6='1'
+uci commit firewall
+
+
+

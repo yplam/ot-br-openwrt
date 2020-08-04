@@ -1,0 +1,10 @@
+[submodule "src/openwrt"]
+	path = src/openwrt
+	url = https://github.com/openwrt/openwrt.git
+	branch = openwrt-19.07
+[submodule "src/openthread"]
+	path = src/openthread
+	url = https://github.com/openthread/openthread.git
+[submodule "src/ot-br-posix"]
+	path = src/ot-br-posix
+	url = https://github.com/openthread/ot-br-posix.git

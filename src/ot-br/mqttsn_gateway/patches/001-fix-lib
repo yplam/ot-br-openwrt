@@ -1,0 +1,20 @@
+--- a/MQTTSNGateway/Makefile
++++ b/MQTTSNGateway/Makefile
+@@ -74,7 +74,7 @@
+ $(SUBDIR)/MQTTSNUnsubscribeClient.c \
+ $(SUBDIR)/MQTTSNUnsubscribeServer.c 
+ 
+-CXX := g++
++
+ CPPFLAGS += 
+ 
+ INCLUDE :=
+@@ -86,7 +86,7 @@
+ 
+ DEFS :=
+ LIB :=
+-LIBS += $(LIB) -L/usr/local/lib
++LIBS += $(LIB)
+ LDFLAGS := 
+ CXXFLAGS := -Wall -O3 -std=c++11
+ LDADD := -lpthread -lssl -lcrypto -lrt

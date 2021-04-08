@@ -1,0 +1,50 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 61f7713..481428d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -31,9 +31,10 @@ project(openthread-br VERSION 0.2.0)
+ 
+ 
+ option(OTBR_DBUS          "Build DBus support" OFF)
+-option(OTBR_OPENWRT       "Build OpenWrt support" OFF)
++option(OTBR_OPENWRT       "Build OpenWrt support" ON)
+ option(OTBR_UNSECURE_JOIN "Enable unsecure joining" OFF)
+ option(OTBR_WEB           "Build Web GUI" OFF)
++option(OTBR_MDNS           "mdns" "avahi")
+ 
+ 
+ if(NOT CMAKE_CXX_STANDARD)
+diff --git a/etc/openwrt/openthread-br/Makefile b/etc/openwrt/openthread-br/Makefile
+index f36ef62..909c80c 100644
+--- a/etc/openwrt/openthread-br/Makefile
++++ b/etc/openwrt/openthread-br/Makefile
+@@ -44,6 +44,7 @@ CMAKE_OPTIONS = \
+ 	-DBUILD_TESTING=OFF \
+ 	-DCMAKE_INSTALL_PREFIX=/usr \
+ 	-DOTBR_MDNS=OFF \
++	-DOTBR_MDNS=avahi \
+ 	-DOT_READLINE="" \
+ 	-DOTBR_OPENWRT=ON
+ 
+@@ -51,7 +52,7 @@ define Package/openthread-br
+ 	SECTION := base
+ 	CATEGORY := Network
+ 	TITLE := OpenThread Border Router
+-	DEPENDS := +libstdcpp +libjson-c +libubus +libblobmsg-json
++	DEPENDS := +libstdcpp +libjson-c +libubus +libblobmsg-json +libavahi-client
+ endef
+ 
+ define Package/openthread-br/description
+diff --git a/third_party/openthread/CMakeLists.txt b/third_party/openthread/CMakeLists.txt
+index 4c2819f..fdd080e 100644
+--- a/third_party/openthread/CMakeLists.txt
++++ b/third_party/openthread/CMakeLists.txt
+@@ -41,7 +41,7 @@ set(OT_PLATFORM_NETIF ON CACHE BOOL "enable platform netif" FORCE)
+ set(OT_PLATFORM_UDP ON CACHE BOOL "enable platform UDP" FORCE)
+ set(OT_UDP_FORWARD OFF CACHE BOOL "diable udp forward" FORCE)
+ 
+-list(APPEND OT_PLATFORM_DEFINES "-DOPENTHREAD_CONFIG_POSIX_SETTINGS_PATH=\"/var/lib/thread\"")
++list(APPEND OT_PLATFORM_DEFINES "-DOPENTHREAD_CONFIG_POSIX_SETTINGS_PATH=\"/etc/thread\"")
+ 
+ add_subdirectory(repo EXCLUDE_FROM_ALL)
+ 

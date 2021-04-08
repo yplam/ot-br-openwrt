@@ -10,9 +10,9 @@ This project provide scripts to build a Thread border router on openwrt.
 **Software**
 
 * Docker development environment
-* OpenThread NCP firmware
+* OpenThread NCP firmware @add99687fdb55f917630b895e019a448cf9aad01
 * OpenWrt firmware
-* ot-br-posix
+* ot-br-posix @24b65157eaccf4902edcab6cb1a4f9e60d998947
 * tayga NAT64
 * totd DNS64
 
@@ -50,7 +50,7 @@ Reference:
 ```
 cd /src/openthread/
 ./bootstrap
-make -f examples/Makefile-nrf52840 BORDER_AGENT=1 BORDER_ROUTER=1 COMMISSIONER=1 UDP_FORWARD=1 USB=1 LINK_RAW=1
+make -f examples/Makefile-nrf52840 BORDER_AGENT=1 BORDER_ROUTER=1 COMMISSIONER=1 UDP_FORWARD=1 USB=1 LINK_RAW=1 BOOTLOADER=USB
 cd /src/openthread/output/nrf52840/bin
 arm-none-eabi-objcopy -O ihex ot-rcp ot-rcp.hex
 ```

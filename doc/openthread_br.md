@@ -31,14 +31,15 @@ ot-ctl thread start
 ot-ctl state
 
 ot-ctl prefix add fd11:22::/64 pasor
-ot-ctl netdataregister
+ot-ctl netdata register
 
 ```
 
 
 ```
-ot-ctl commissioner joiner add f4ce368c8657b05b J01NME
-
+ot-ctl commissioner start 
+ot-ctl commissioner joiner add f4ce36304d0c224b J01NME
+ot-ctl commissioner joiner add f4ce36679cbbfb86 J01NME
 ```
 如果使用 openwrt，可以直接调用 ubus 接口：
 
@@ -67,7 +68,7 @@ ubus -v list otbr
 ```
 # 启动 commissioner
 ubus call otbr commissionerstart
-ubus call otbr joineradd '{"pskd":"J01NME","eui64":"f4ce36b1e581f01c"}'
+ubus call otbr joineradd '{"pskd":"J01NME","eui64":"f4ce360cd648257d"}'
 
 ```
 

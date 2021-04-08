@@ -10,6 +10,8 @@ RUN add-apt-repository ppa:team-gcc-arm-embedded/ppa -y && apt-get update \
 
 RUN useradd -m docker && echo "docker:docker" | chpasswd && adduser docker sudo
 
+RUN apt-get install bc lzop
+
 RUN mkdir /src
 RUN usermod -u 1000 docker
 RUN chown -R docker:docker /src

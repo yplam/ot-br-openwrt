@@ -3,7 +3,6 @@ services:
   compiler:
     build:
       context: ./docker/compiler
-      network: host
     volumes:
       - ./src:/src
     environment:

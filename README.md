@@ -10,10 +10,9 @@ This project provide scripts to build a Thread border router on openwrt.
 **Software**
 
 * Docker development environment
-* OpenThread NCP firmware @add99687fdb55f917630b895e019a448cf9aad01
-* OpenWrt firmware
-* ot-br-posix @24b65157eaccf4902edcab6cb1a4f9e60d998947
-* tayga NAT64
+* OpenWrt 22.03
+* ot-br-posix @83b30e69c7d640a8904980eb5c9f48160d6e24db
+* openthread @96ea73076e84534e87142ded36869080e91c66fa
 * totd DNS64
 
 
@@ -62,10 +61,10 @@ Flash ot-rcp.hex to your nrf52840 board.
 Edit /src/openwrt/feeds.conf, using feeds.conf.default as template:
 
 ```
-src-git packages https://git.openwrt.org/feed/packages.git;openwrt-19.07
-src-git luci https://git.openwrt.org/project/luci.git;openwrt-19.07
-src-git routing https://git.openwrt.org/feed/routing.git;openwrt-19.07
-src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-19.07
+src-git-full packages https://git.openwrt.org/feed/packages.git;openwrt-22.03
+src-git-full luci https://git.openwrt.org/project/luci.git;openwrt-22.03
+src-git-full routing https://git.openwrt.org/feed/routing.git;openwrt-22.03
+src-git-full telephony https://git.openwrt.org/feed/telephony.git;openwrt-22.03
 src-link openthread /src/ot-br-posix/etc/openwrt
 src-link otbr /src/ot-br
 ```
@@ -78,6 +77,7 @@ Configure and make OpenWrt
 make menuconfig
 # select MediaTek Ralink MIPS -> MT76*8 based boards -> MediaTek LinkIt Smart 7688
 # select Network -> ot-br -> ot-br
+# select Network -> openthread-br
 # select tcpdump if you want to capture and analyze network traffic
 make V=99
 ```

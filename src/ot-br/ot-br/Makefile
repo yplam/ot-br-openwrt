@@ -10,7 +10,7 @@ define Package/$(PKG_NAME)
 	SECTION:=net
 	CATEGORY:=Network
 	TITLE:=OpenThread border router config scripts
-	DEPENDS:= +kmod-usb-acm +kmod-tun +openthread-br +tayga +luci +totd
+	DEPENDS:= +kmod-usb-acm +kmod-tun +openthread-br +luci +ipset
 endef
 
 define Build/Prepare
@@ -18,13 +18,9 @@ define Build/Prepare
 endef
 
 define Build/Compile
-	$(TARGET_CC) $(TARGET_CFLAGS) $(EXTRA_CFLAGS) -Wall -Werror -o $(PKG_BUILD_DIR)/pinmux src/pinmux.c ;
 endef
 
 define Package/$(PKG_NAME)/install
-	$(INSTALL_DIR) $(1)/sbin
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/pinmux $(1)/sbin/mt7688_pinmux
-	$(INSTALL_DIR) $(1)/etc/thread/
 	$(CP) -f ./files/* $(1)
 endef
 

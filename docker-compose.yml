@@ -5,9 +5,9 @@ services:
       context: ./docker/compiler
     volumes:
       - ./src:/src
-    environment:
-      - http_proxy=http://host.docker.internal:8123
-      - https_proxy=http://host.docker.internal:8123
+    # environment:
+    #   - http_proxy=http://host.docker.internal:7890
+    #   - https_proxy=http://host.docker.internal:7890
     entrypoint: 
       - /bin/sh
       - -c 
